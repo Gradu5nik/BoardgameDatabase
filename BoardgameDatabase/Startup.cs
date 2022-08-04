@@ -1,4 +1,5 @@
 using BoardgameDatabase.Data;
+using BoardgameDatabase.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,8 @@ namespace BoardgameDatabase
             services.AddDbContext<BoardgameDBContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("BoardgameDB")));
+
+            services.AddTransient<IRepoService, EFRepoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +58,7 @@ namespace BoardgameDatabase
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Boardgame}/{action=Index}/{id?}");
             });
         }
     }

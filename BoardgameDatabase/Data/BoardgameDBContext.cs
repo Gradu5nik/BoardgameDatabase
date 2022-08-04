@@ -17,6 +17,9 @@ namespace BoardgameDatabase.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Adress>().HasData(
+                new Adress() { Name = "George", Street = "George", City = "George", Country = "France", PostCode = "8800" }
+            );
             modelBuilder.Entity<Boardgame>().HasData(
                 new Boardgame() { Id = 1, Name="Kemet", Owner="George",Keeper="George",MaxPlayers=5,MinPlayers=2,TagText="Strategy,Area Controll,Dudes on the map,Beginner",ForSale=false}    
             );
